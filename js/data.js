@@ -10,8 +10,8 @@ const educationData = {
                         name: "اللغة العربية",
                         icon: "📚",
                         books: [
-                            { id: "ar1_1", name: "كتاب القراءة والكتابة", author: "وزارة التربية", pages: 120, file: "https://github.com/kanawattown-a11y/library/blob/e92ff0c3e0e334421bbb80b9f3ba6b9ecd224cd3/js/arabic_grade1_reading.pdf" },
-                            { id: "ar1_2", name: "كتاب الخط العربي", author: "وزارة التربية", pages: 80, file: "./arabic_grade1_writing.pdf" }
+                            { id: "ar1_1", name: "كتاب القراءة والكتابة", author: "وزارة التربية", pages: 120, file: "arabic_grade1_reading.pdf" },
+                            { id: "ar1_2", name: "كتاب الخط العربي", author: "وزارة التربية", pages: 80, file: "arabic_grade1_reading.pdf" }
                         ]
                     },
                     math: {
