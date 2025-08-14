@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>عارض PDF — دقة عالية</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --primary:#c31432;
+    --dark:#111;
+    --muted:#f5f5f5;
+    --btn-radius:8px;
+  }
+  html,body{height:100%;margin:0;font-family:"Cairo",system-ui,Arial,Helvetica,sans-serif;background:var(--muted);color:var(--dark);-webkit-font-smoothing:antialiased}
+  header{width:100%;background:linear-gradient(90deg,var(--primary),#9b1226);color:#fff;display:flex;align-items:center;gap:12px;padding:10px 14px;box-sizing:border-box;box-shadow:0 2px 6px rgba(0,0,0,0.12);}
+  header img.logo{height:44px;width:auto;border-radius:6px;background:#fff;padding:4px}
+  header h1{font-size:18px;margin:0;font-weight:700;flex:1}
+  .back-to-library{background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:8px 16px;border-radius:var(--btn-radius);text-decoration:none;font-weight:600;font-size:14px;transition:all 0.3s ease;display:flex;align-items:center;gap:8px}
+  .back-to-library:hover{background:rgba(255,255,255,0.3);border-color:rgba(255,255,255,0.5)}
+  .controls{width:100%;max-width:1100px;margin:12px auto 6px;display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap;padding:0 12px;box-sizing:border-box;}
+  .controls .group{display:flex;gap:8px;align-items:center}
+  button.ctrl{background:transparent;border:2px solid rgba(0,0,0,0.08);padding:8px 12px;border-radius:var(--btn-radius);cursor:pointer;font-weight:600;min-width:44px;background-color:#fff;}
+  button.ctrl.primary{background:var(--primary); color:#fff; border-color:transparent;}
+  .page-label{font-weight:600}
+  .viewer-wrap{width:100%;display:flex;justify-content:center;padding:8px 12px 40px;box-sizing:border-box;}
+  .viewer{width:100%;max-width:1100px;background:#fff;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,0.06);padding:12px;box-sizing:border-box;}
+  canvas#pdf-canvas{width:100%;height:auto;display:block;border-radius:4px;background:#eee}
+  .fallback{text-align:center;margin-top:8px;color:#444;font-size:14px;}
+  .fallback a{color:var(--primary);font-weight:700;text-decoration:none}
+  @media (max-width:640px){ 
+    header h1{font-size:16px} 
+    button.ctrl{padding:8px 10px;font-size:14px} 
+    .back-to-library{padding:6px 12px;font-size:13px}
+    header{padding:8px 12px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img class="logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5PKxOyEy_qHhZUpBAsuXT8g53xn3LnpLoC6tAC2dWMWGJNgIV1zEB7G4wbEq5Pezt5mHARYiADeeJ9PYC5jLa3bRWVSG5Qx5Ibc7YB7lU9yjumwamfVxDnV6u5iS4Qu4VbMSA_JDiTwQk6C-upcJ57GhWALyNr-_0Jz6sSg_AjvwWBZZRXVWaVbrkwVhyhyphenhyphen/w72-h72-p-k-no-nu/KANAWAT%20CYPER%20LOGO.png" alt="KANAWAT logo" />
+  <h1 id="bookTitle">عارض المستندات (دقة عالية)</h1>
+  <a href="index.html" class="back-to-library">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M19 12H5M12 19l-7-7 7-7"/>
+    </svg>
+    العودة للمكتبة
+  </a>
+</header>
+
+<div class="controls" role="toolbar" aria-label="أدوات عرض PDF">
+  <div class="group">
+    <button id="prev" class="ctrl">◀</button>
+    <button id="next" class="ctrl">▶</button>
+  </div>
+
+  <div class="group page-label" aria-live="polite">
+    <span id="pageNum">1</span> / <span id="pageCount">1</span>
+  </div>
+</div>
+
+<div class="viewer-wrap">
+  <div class="viewer" id="viewer">
+    <canvas id="pdf-canvas" role="img" aria-label="مستند PDF"></canvas>
+    <div class="fallback">إذا لم يعمل العرض اضغط <a id="downloadLink" href="#" target="_blank" rel="noopener">هنا لتحميل الملف</a></div>
+  </div>
+</div>
+
+<script type="module">
+/*
+  إعدادات الدقة:
+  - MAX_DPR: أعلى قيمة نسمح بها لـ devicePixelRatio (يزيد الوضوح لكن يستهلك موارد).
+  - maxCssScale: الحد الأقصى لمضاعفة عرض CSS نسبةً لحجم الصفحة الأصلية (يمنع تكبير مبالغ فيه).
+  - MAX_CANVAS_WIDTH: حماية ضد تجاوز حدود canvas في بعض المتصفحات.
+*/
+import * as pdfjsLib from './pdf.mjs';
+pdfjsLib.GlobalWorkerOptions.workerSrc = './pdf.worker.mjs';
+
+// الحصول على معاملات URL
+const urlParams = new URLSearchParams(window.location.search);
+const bookFile = urlParams.get('book') || 'الصفحة%20الرئيسية.pdf';
+const bookTitle = urlParams.get('title') || 'مستند PDF';
+
+// تحديث عنوان الكتاب
+document.getElementById('bookTitle').textContent = bookTitle;
+document.title = `${bookTitle} - عارض PDF`;
+
+const url = bookFile;
+const canvas = document.getElementById('pdf-canvas');
+const ctx = canvas.getContext('2d', { alpha: false });
+ctx.imageSmoothingEnabled = false;
+
+const pageNumSpan = document.getElementById('pageNum');
+const pageCountSpan = document.getElementById('pageCount');
+const downloadLink = document.getElementById('downloadLink');
+
+let pdfDoc = null;
+let pageNum = 1;
+
+// إعدادات لتحسين الدقة
+const MAX_DPR = 4;        // تم زيادة القيمة لزيادة الدقة
+const maxCssScale = 4.0;  // تم زيادة القيمة لزيادة الدقة
+const MAX_CANVAS_WIDTH = 16384; // تم زيادة القيمة لزيادة الدقة
+
+function getEffectiveDPR(){
+  return Math.min(window.devicePixelRatio || 1, MAX_DPR);
+}
+
+async function renderPage(num){
+  try {
+    const page = await pdfDoc.getPage(num);
+    const container = document.getElementById('viewer');
+    const containerWidth = Math.min(container.clientWidth, 1100);
+    const unscaledViewport = page.getViewport({ scale: 1 });
+
+    // عرض CSS الهدف (لا نجعل القيمة أكبر من unscaledViewport.width * maxCssScale)
+    const targetCssWidth = Math.min(containerWidth - 24, unscaledViewport.width * maxCssScale);
+    const baseScale = targetCssWidth / unscaledViewport.width;
+
+    // DPR للحصول على backing store عالي الدقة
+    const dpr = getEffectiveDPR();
+    let renderScale = baseScale * dpr;
+
+    // احسب viewport بالمقياس المطلوب
+    let viewport = page.getViewport({ scale: renderScale });
+
+    // إذا تجاوز عرض الـ canvas الحد الأقصى، نخفض عامل render ليناسب
+    let reduceFactor = 1;
+    if (viewport.width > MAX_CANVAS_WIDTH) {
+      reduceFactor = MAX_CANVAS_WIDTH / viewport.width;
+      renderScale = renderScale * reduceFactor;
+      viewport = page.getViewport({ scale: renderScale });
+    }
+
+    // اضبط أبعاد الباكينغ ستور (بكسل حقيقي)
+    canvas.width = Math.max(1, Math.floor(viewport.width));
+    canvas.height = Math.max(1, Math.floor(viewport.height));
+
+    // اضبط الأبعاد الظاهرة (CSS) لتظل مساوية للـ baseScale * unscaled width
+    // لاحظ أننا نقسم على (dpr * reduceFactor) لكي يبقى CSS width = baseScale * unscaledViewport.width
+    const cssWidth = Math.floor(viewport.width / (dpr * reduceFactor));
+    const cssHeight = Math.floor(viewport.height / (dpr * reduceFactor));
+    canvas.style.width = cssWidth + 'px';
+    canvas.style.height = cssHeight + 'px';
+
+    // أعد تعيين أي تحويل سابق
+    ctx.setTransform(1,0,0,1,0,0);
+
+    const renderContext = {
+      canvasContext: ctx,
+      viewport: viewport,
+    };
+
+    const renderTask = page.render(renderContext);
+    await renderTask.promise;
+
+    pageNumSpan.textContent = pageNum;
+    downloadLink.href = url;
+  } catch (err) {
+    console.error('Render page error:', err);
+  }
+}
+
+function queueRenderPage(num){
+  if (!pdfDoc) return;
+  if (num < 1 || num > pdfDoc.numPages) return;
+  pageNum = num;
+  renderPage(pageNum);
+}
+
+// تحميل المستند
+pdfjsLib.getDocument(url).promise.then(pdf => {
+  pdfDoc = pdf;
+  pageCountSpan.textContent = pdf.numPages;
+  renderPage(pageNum);
+}).catch(err => {
+  console.error('Failed to load PDF:', err);
+  downloadLink.href = url;
+  downloadLink.textContent = 'تحميل الملف';
+});
+
+// أزرار التنقل
+document.getElementById('prev').addEventListener('click', () => queueRenderPage(pageNum - 1));
+document.getElementById('next').addEventListener('click', () => queueRenderPage(pageNum + 1));
+
+// إعادة الرسم عند تغيير حجم الشاشة
+window.addEventListener('resize', () => {
+  if (pdfDoc) renderPage(pageNum);
+});
+
+// التنقل بالكيبورد
+document.addEventListener('keydown', (e) => {
+  switch(e.key) {
+    case 'ArrowLeft':
+    case 'ArrowUp':
+      queueRenderPage(pageNum - 1);
+      e.preventDefault();
+      break;
+    case 'ArrowRight':
+    case 'ArrowDown':
+      queueRenderPage(pageNum + 1);
+      e.preventDefault();
+      break;
+    case 'Home':
+      queueRenderPage(1);
+      e.preventDefault();
+      break;
+    case 'End':
+      if (pdfDoc) queueRenderPage(pdfDoc.numPages);
+      e.preventDefault();
+      break;
+  }
+});
+</script>
+
+</body>
+</html>
+
