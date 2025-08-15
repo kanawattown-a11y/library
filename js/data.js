@@ -487,7 +487,7 @@ const educationData = {
                             { id: "eng10_1", name: "English Language", author: "وزارة التربية", pages: 240, file: "https://raw.githubusercontent.com/kanawattown-a11y/10/a98e66216b1885c19b0e427dcd5e9dbaff52a442/e10k.pdf" }
                         ]
                     },
-                    english-2: {
+                    english2: {
                         name: "2 اللغة الإنجليزية",
                         icon: "🇬🇧",
                         books: [
