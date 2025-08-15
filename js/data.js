@@ -489,7 +489,7 @@ const educationData = {
                     },
                      frensh: {
                         name: "اللغة الفرنسية",
-                        icon: "🇬🇧",
+                        icon: "",
                         books: [
                             { id: "eng10_1", name: "Frensh Language", author: "وزارة التربية", pages: 240, file: "https://github.com/kanawattown-a11y/10/raw/a98e66216b1885c19b0e427dcd5e9dbaff52a442/f10.pdf" }
                         ]
