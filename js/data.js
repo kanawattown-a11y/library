@@ -18,8 +18,8 @@ const educationData = {
                         name: "الرياضيات",
                         icon: "🔢",
                         books: [
-                            { id: "math1_1", name: "الأرقام والعد", author: "وزارة التربية", pages: 100, file: "math_grade1_numbers.pdf" },
-                            { id: "math1_2", name: "الجمع والطرح", author: "وزارة التربية", pages: 90, file: "math_grade1_operations.pdf" }
+                            { id: "math1_1", name: "الأرقام والعد", author: "وزارة التربية", pages: 100, file: "https://nccd.gov.sy/imges/books/F/f10mad.pdf" },
+                            { id: "math1_2", name: "الجمع والطرح", author: "وزارة التربية", pages: 90, file: "https://nccd.gov.sy/imges/books/F/f10mad.pdf" }
                         ]
                     },
                     science: {
