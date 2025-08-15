@@ -13,66 +13,80 @@ const educationData = {
                         name: "اللغة العربية",
                         icon: "📚",
                         books: [
-                            { id: "ar12_1", name: "اللغة العربيةأدبي", author: "وزارة التربية", pages: 340, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/774937dea96f4ef19a78c3832c11ba3e8bd4a906/ar12ad.pdf"},
-                            { id: "ar12_2", name: "اللغة العربية علمي", author: "وزارة التربية", pages: 340, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/774937dea96f4ef19a78c3832c11ba3e8bd4a906/ar12al.pdf"}
+                            { id: "ar12_1", name: "اللغة العربية أدبي", author: "وزارة التربية", pages: 176, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/774937dea96f4ef19a78c3832c11ba3e8bd4a906/ar12ad.pdf" },
+                            { id: "ar12_2", name: "اللغة العربية علمي", author: "وزارة التربية", pages: 228, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/774937dea96f4ef19a78c3832c11ba3e8bd4a906/ar12al.pdf" }
                         ]
                     },
                     math: {
                         name: "الرياضيات",
                         icon: "🔢",
                         books: [
-                            { id: "math12_1", name: "الرياضيات", author: "وزارة التربية", pages: 320, file: "math_grade12.pdf" }
+                            { id: "math12_1", name: "1 - الرياضيات", author: "وزارة التربية", pages: 252, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/774937dea96f4ef19a78c3832c11ba3e8bd4a906/math12f1.pdf" },
+                            { id: "math12_2", name: "2 - الرياضيات", author: "وزارة التربية", pages: 217, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/774937dea96f4ef19a78c3832c11ba3e8bd4a906/math12f2.pdf" }
                         ]
                     },
                     physics: {
                         name: "الفيزياء",
                         icon: "⚛️",
                         books: [
-                            { id: "phy12_1", name: "الفيزياء", author: "وزارة التربية", pages: 290, file: "physics_grade12.pdf" }
+                            { id: "phy12_1", name: "الفيزياء", author: "وزارة التربية", pages: 287, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/774937dea96f4ef19a78c3832c11ba3e8bd4a906/ph12al.pdf" }
                         ]
                     },
                     chemistry: {
                         name: "الكيمياء",
                         icon: "🧪",
                         books: [
-                            { id: "chem12_1", name: "الكيمياء", author: "وزارة التربية", pages: 280, file: "chemistry_grade12.pdf" }
+                            { id: "chem12_1", name: "الكيمياء", author: "وزارة التربية", pages: 200, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/774937dea96f4ef19a78c3832c11ba3e8bd4a906/k12al.pdf" }
                         ]
                     },
                     biology: {
                         name: "الأحياء",
                         icon: "🧬",
                         books: [
-                            { id: "bio12_1", name: "الأحياء", author: "وزارة التربية", pages: 270, file: "biology_grade12.pdf" }
+                            { id: "bio12_1", name: "الأحياء", author: "وزارة التربية", pages: 287, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/774937dea96f4ef19a78c3832c11ba3e8bd4a906/sci12al.pdf" }
                         ]
                     },
-                    islamic: {
-                        name: "التربية الإسلامية",
-                        icon: "🕌",
-                        books: [
-                            { id: "isl12_1", name: "التربية الإسلامية", author: "وزارة التربية", pages: 190, file: "islamic_grade12.pdf" }
-                        ]
-                    },
+                
                     history: {
                         name: "التاريخ",
                         icon: "🏛️",
                         books: [
-                            { id: "hist12_1", name: "التاريخ", author: "وزارة التربية", pages: 180, file: "history_grade12.pdf" }
+                            { id: "hist12_1", name: "التاريخ", author: "وزارة التربية", pages: 208, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/774937dea96f4ef19a78c3832c11ba3e8bd4a906/hi12ad.pdf" }
                         ]
                     },
                     geography: {
                         name: "الجغرافيا",
                         icon: "🗺️",
                         books: [
-                            { id: "geo12_1", name: "الجغرافيا", author: "وزارة التربية", pages: 175, file: "geography_grade12.pdf" }
+                            { id: "geo12_1", name: "الجغرافيا", author: "وزارة التربية", pages: 215, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/774937dea96f4ef19a78c3832c11ba3e8bd4a906/geo12ad.pdf" }
+                        ]
+                    },
+                    philosophy: {
+                        name: "الفلسفة",
+                        icon: "🗺️",
+                        books: [
+                            { id: "phi12_1", name: "1 - الفلسفة", author: "وزارة التربية", pages: 188, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/774937dea96f4ef19a78c3832c11ba3e8bd4a906/f12adf1.pdf" },
+                            { id: "phi12_2", name: "2 - الفلسفة", author: "وزارة التربية", pages: 180, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/774937dea96f4ef19a78c3832c11ba3e8bd4a906/f12adf2.pdf" }
                         ]
                     },
                     english: {
                         name: "اللغة الإنجليزية",
                         icon: "🇬🇧",
                         books: [
-                            { id: "eng12_1", name: "English Language", author: "وزارة التربية", pages: 280, file: "english_grade12.pdf" }
+                            { id: "eng12_1", name: "English - كتاب الطالب أدبي", author: "وزارة التربية", pages: 128, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/774937dea96f4ef19a78c3832c11ba3e8bd4a906/e12kad.pdf" },
+                            { id: "eng12_2", name: "English - كتاب الطالب علمي", author: "وزارة التربية", pages: 130, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/774937dea96f4ef19a78c3832c11ba3e8bd4a906/e12kal.pdf" },
+                            { id: "eng12_3", name: "English - كتاب الأنشطة أدبي", author: "وزارة التربية", pages: 125, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/774937dea96f4ef19a78c3832c11ba3e8bd4a906/e12aad.pdf" },
+                            { id: "eng12_4", name: "English - كتاب الأنشطة علمي", author: "وزارة التربية", pages: 126, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/774937dea96f4ef19a78c3832c11ba3e8bd4a906/e12aal.pdf" }
+                        ]
+                    },
+                    frensh: {
+                        name: "اللغة الفرنسية",
+                        icon: "🇫🇷",
+                        books: [
+                            { id: "fr12_1", name: "Frensh Language", author: "وزارة التربية", pages: 152, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/774937dea96f4ef19a78c3832c11ba3e8bd4a906/f12.pdf" }
                         ]
                     }
+                    
                 }
             }
         }
