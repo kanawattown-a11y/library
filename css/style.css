@@ -29,7 +29,7 @@
 
 html, body {
     height: 100%;
-    font-family: "Cairo", system-ui, Arial, Helvetica, sans-serif;
+    font-family: "Cairo", system-ui, Arial, Helvetica, sans-serif, 'Segoe UI Emoji', 'Noto Color Emoji';
     background: var(--muted);
     color: var(--dark);
     -webkit-font-smoothing: antialiased;
