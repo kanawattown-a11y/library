@@ -13,8 +13,8 @@ const educationData = {
                         name: "اللغة العربية",
                         icon: "📚",
                         books: [
-                            { id: "ar12_1", name: "اللغة العربيةأدبي", author: "وزارة التربية", pages: 340, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/774937dea96f4ef19a78c3832c11ba3e8bd4a906/ar12ad.pdf" }
-                            { id: "ar12_2", name: "اللغة العربية علمي", author: "وزارة التربية", pages: 340, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/774937dea96f4ef19a78c3832c11ba3e8bd4a906/ar12al.pdf" }
+                            { id: "ar12_1", name: "اللغة العربيةأدبي", author: "وزارة التربية", pages: 340, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/774937dea96f4ef19a78c3832c11ba3e8bd4a906/ar12ad.pdf"}
+                            { id: "ar12_2", name: "اللغة العربية علمي", author: "وزارة التربية", pages: 340, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/774937dea96f4ef19a78c3832c11ba3e8bd4a906/ar12al.pdf"}
                         ]
                     },
                     math: {
