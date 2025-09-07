@@ -13,16 +13,16 @@ const educationData = {
                         name: "اللغة العربية",
                         icon: "📚",
                         books: [
-                            { id: "ar12_1", name: "اللغة العربية أدبي", author: "وزارة التربية", pages: 176, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/774937dea96f4ef19a78c3832c11ba3e8bd4a906/ar12ad.pdf" },
-                            { id: "ar12_2", name: "اللغة العربية علمي", author: "وزارة التربية", pages: 228, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/774937dea96f4ef19a78c3832c11ba3e8bd4a906/ar12al.pdf" }
+                            { id: "ar12_1", name: "اللغة العربية أدبي", author: "وزارة التربية", pages: 176, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/857ff4b228e4ed7782f1dba1c77be84943936757/ar12ad.pdf" },
+                            { id: "ar12_2", name: "اللغة العربية علمي", author: "وزارة التربية", pages: 228, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/857ff4b228e4ed7782f1dba1c77be84943936757/ar12al.pdf" }
                         ]
                     },
                     math: {
                         name: "الرياضيات",
                         icon: "🔢",
                         books: [
-                            { id: "math12_1", name: "1 - الرياضيات", author: "وزارة التربية", pages: 252, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/774937dea96f4ef19a78c3832c11ba3e8bd4a906/math12f1.pdf" },
-                            { id: "math12_2", name: "2 - الرياضيات", author: "وزارة التربية", pages: 217, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/774937dea96f4ef19a78c3832c11ba3e8bd4a906/math12f2.pdf" }
+                            { id: "math12_1", name: "1 - الرياضيات", author: "وزارة التربية", pages: 252, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/857ff4b228e4ed7782f1dba1c77be84943936757/math12f1.pdf" },
+                            { id: "math12_2", name: "2 - الرياضيات", author: "وزارة التربية", pages: 217, file: "https://raw.githubusercontent.com/kanawattown-a11y/12/857ff4b228e4ed7782f1dba1c77be84943936757/math12f2.pdf" }
                         ]
                     },
                     physics: {
